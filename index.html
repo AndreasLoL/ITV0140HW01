@@ -1,14 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width">
-    <title>Movies</title>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link href="design/style.css" rel="stylesheet">
-</head>
-<body>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Movies</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="design/style.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div data-role="page" id="pageone">
+            <div data-position="fixed" data-role="header">
+                <h1>CinemaLife</h1>
+                <a href="#" data-icon="search" class="ui-btn-right">Search</a>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <h3 style="margin-top: -10px; margin-left: -10px;">Trending Movies</h3>
+                <div style="padding: 5px;">
+                    <ul data-role="listview" id="upcoming-list">
+                    </ul>
+                </div>
+
+                <h3 style="margin-left: -10px;">Coming Soon</h3>
+
+                <div style="max-height: 250px;">
+                    <ul data-role="listview" id="trending-list">
+                    </ul>
+                </div>
+
+            </div>
+            <div data-position="fixed" data-role="footer">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#anylink" data-icon="bullets">Trending</a></li>
+                        <li><a href="#anylink" data-icon="star">Watch List</a></li>
+                        <li><a href="#anylink" data-icon="check">Watched Movies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div data-role="page" data-dialog="true" id="modify">
+            <div data-role="header">
+                <h1>Add movie</h1>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <p>Movie description goes here. Movie description goes here. Movie description goes here. Movie description goes here. Movie description goes here. Movie description goes here. </p>
+                <a href="#" class="ui-btn ui-btn-inline ui-btn-b ui-shadow ui-corner-all ui-icon-check ui-btn-icon-left ui-btn-inline ui-mini" data-rel="back">Add to Watchlist</a>
+                <a href="#" class="ui-btn ui-btn-inline ui-shadow ui-corner-all ui-btn-inline ui-mini" data-rel="back">I have already seen this movie</a>
+            </div>
+        </div>
+
+
+        <div data-role="page" id="moviepage">
+            <div data-role="header">
+                <div data-position="fixed" data-role="header">
+                    <a href="#pageone" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+                    <h1>Movie #x</h1>
+                    <a href="#" data-icon="search" class="ui-btn-right">Search</a>
+                </div>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <p>Insert Content Here</p>
+            </div>
+
+            <div data-role="footer">
+                <h1>Insert Footer Text Here</h1>
+            </div>
+        </div>
+
+        <script src="script/main.js"></script>
+    </body>
 </html>
