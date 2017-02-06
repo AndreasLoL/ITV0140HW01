@@ -23,7 +23,7 @@ function dataToPageInformation(data) {
     $("#title").text(data["title"]);
     $("#description").text(data["description"]);
     $("#logo").attr("src", data["logoURL"]);
-    $("#video").attr("src", convertStringToEmbed(data["videoURL"]))
+    $("#video").attr("src", convertStringToEmbed(data["videoURL"]));
     $("#rating").text("Rating: " + data["rating"]);
     $("#release-date").text("Release date: " + data["releaseDate"]);
     $("#loader-div-mv").css("display", "none");
