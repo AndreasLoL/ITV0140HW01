@@ -17,21 +17,31 @@
                 <a href="#" data-icon="search" class="ui-btn-right">Search</a>
             </div>
 
-            <div data-role="main" class="ui-content">
-                <h3 style="margin-top: -10px; margin-left: -10px;">Trending Movies</h3>
-                <div style="padding: 5px;">
-                    <ul data-role="listview" id="upcoming-list">
-                    </ul>
+            <div id="content-div" style="display: none;">
+                <div data-role="main" class="ui-content">
+                    <h3 style="margin-top: -10px; margin-left: -10px;">Coming Soon</h3>
+                    <div style="padding: 5px;">
+                        <ul data-role="listview" id="upcoming-list">
+                        </ul>
+                    </div>
+
+                    <h3 style="margin-left: -10px;">Trending Movies</h3>
+
+                    <div style="max-height: 250px;">
+                        <ul data-role="listview" id="trending-list">
+                        </ul>
+                    </div>
                 </div>
-
-                <h3 style="margin-left: -10px;">Coming Soon</h3>
-
-                <div style="max-height: 250px;">
-                    <ul data-role="listview" id="trending-list">
-                    </ul>
-                </div>
-
             </div>
+
+            <div id="loader-div">
+                <div data-role="main" class="ui-content">
+                    <div class="loader"></div>
+                </div>
+            </div>
+
+
+
             <div data-position="fixed" data-role="footer">
                 <div data-role="navbar">
                     <ul>

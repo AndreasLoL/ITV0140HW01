@@ -3,17 +3,28 @@
  */
 
 var movies = [];
+var upcomingMoviesLoaded = false;
+var trendingMoviesLoaded = false;
+
+function notifyDataLoaded() {
+    if (upcomingMoviesLoaded && trendingMoviesLoaded) {
+        $("#loader-div").css("display", "none");
+        $("#content-div").css("display", "inline");
+    }
+}
 
 $.ajax({
     type: "GET",
     dataType: "json",
-    url: "https://cinemalife.herokuapp.com/movies/upcoming",
+    url: "https://cinemalife.herokuapp.com/movies/trending",
     success: function(data){
         $.each(data, function(i, movie){
             movies.push(movie);
             var id = movie["uniqueID"];
             $('#trending-list').append('<li><a onclick="loadMovieView(' + id + ')" href="#" data-parm="ayy"><img src="' + movie["logoURL"] +'"><h2>' + movie["title"] + '</h2><p>' + movie["description"] + '</p></a><a href="#modify" data-transition="pop" data-icon="edit">Modify</a></li>').listview('refresh')
         });
+        trendingMoviesLoaded = true;
+        notifyDataLoaded();
     },
     error : function(jqXHR, textStatus, errorThrown) {
         console.log(errorThrown);
@@ -25,14 +36,15 @@ $.ajax({
 $.ajax({
     type: "GET",
     dataType: "json",
-    url: "https://cinemalife.herokuapp.com/movies/trending",
+    url: "https://cinemalife.herokuapp.com/movies/upcoming",
     success: function(data){
         $.each(data, function(i, movie){
             movies.push(movie);
             var id = movie["uniqueID"];
             $('#upcoming-list').append('<li><a onclick="loadMovieView(' + id + ')" href="#"><img src="' + movie["logoURL"] +'"><h2>' + movie["title"] + '</h2><p>' + movie["description"] + '</p></a><a href="#modify" data-transition="pop" data-icon="edit">Modify</a></li>').listview('refresh')
         });
-        console.log(movies)
+        upcomingMoviesLoaded = true;
+        notifyDataLoaded();
     },
     error : function(jqXHR, textStatus, errorThrown) {
         console.log(errorThrown);

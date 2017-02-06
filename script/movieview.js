@@ -26,16 +26,14 @@ function dataToPageInformation(data) {
     $("#video").attr("src", convertStringToEmbed(data["videoURL"]))
     $("#rating").text("Rating: " + data["rating"]);
     $("#release-date").text("Release date: " + data["releaseDate"]);
-    $("#loader-div").css("display", "none");
-    $("#content-div").css("display", "inline");
+    $("#loader-div-mv").css("display", "none");
+    $("#content-div-mv").css("display", "inline");
 }
 
 function getUrlParameter(name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1] || 0;
 }
-
-console.log(convertStringToEmbed("https://www.youtube.com/watch?v=RH3OxVFvTeg"));
 
 function convertStringToEmbed(url) {
     return url.replace("watch?v=", "embed/");

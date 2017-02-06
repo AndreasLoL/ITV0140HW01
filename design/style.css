@@ -8,22 +8,24 @@ body {
 }
 
 .loader {
-    border-top: 16px solid blue;
-    border-right: 16px solid green;
-    border-bottom: 16px solid red;
-    border-left: 16px solid pink;
+    border: 8px solid #34495e;
+    border-right-color: #fff;
+    border-left-color: #fff;
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
+    width: 35px;
+    height: 35px;
+    animation: spin 500ms ease infinite;
     position: absolute;
-    left: 38%;
-    top: 38%;
-    -webkit-transform: translate(-38%, -38%);
-    transform: translate(-38%, -38%);
+    left: 43%;
+    top: 43%;
+    -webkit-transform: translate(-43, -43%);
+    transform: translate(-43%, -43%);
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% { transform: rotate(2deg);
+        -webkit-filter: blur(0px);  }
+    50% { -webkit-filter: blur(1px);}
+    100% { transform: rotate(360deg);
+        -webkit-filter: blur(0px);}
 }
