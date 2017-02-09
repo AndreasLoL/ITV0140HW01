@@ -79,20 +79,16 @@
                 </div>
             </div>
 
-            
-
             <div data-position="fixed" data-role="footer">
                 <div data-role="navbar">
                     <ul>
                         <li><a href="#" data-icon="bullets">Trending</a></li>
-                        <li><a href="#anylink" data-icon="star">Watch List</a></li>
-                        <li><a href="#anylink" data-icon="check">Watched Movies</a></li>
+                        <li><a href="#watch-list-page" data-icon="star">Watch List</a></li>
+                        <li><a href="#watched-movies-page" data-icon="check">Watched Movies</a></li>
                     </ul>
                 </div>
             </div>
         </div>
-
-
 
         <div data-role="page" id="search-page">
             <div data-position="fixed" data-role="header">
@@ -109,8 +105,6 @@
                     </ul>
                 </div>
             </div>
-
-
 
             <div data-position="fixed" data-role="footer">
                 <div data-role="navbar">
@@ -131,14 +125,25 @@
             </div>
 
             <div data-role="main" class="ui-content">
+                <ul data-role="listview">
+                    <li style="background: #e9e9e9;"><h3>Movies that You want to see</h3></li>
+                </ul>
+
+                <form>
+                    <div class="ui-field-contain">
+                            <select name="select-native-18" id="watch-list-sorter">
+                                <option value="alphabetically">Alphabetically</option>
+                                <option value="rating">By Movie Rating</option>
+                                <option value="release-date">By Release Date</option>
+                            </select>
+                    </div>
+                </form>
 
                 <div>
                     <ul style="margin-top: 10px;" data-role="listview" id="watch-list-list">
                     </ul>
                 </div>
             </div>
-
-
 
             <div data-position="fixed" data-role="footer">
                 <div data-role="navbar">
@@ -159,14 +164,24 @@
             </div>
 
             <div data-role="main" class="ui-content">
+                <ul data-role="listview">
+                    <li style="background: #e9e9e9;"><h3>Movies that You have seen</h3></li>
+                </ul>
+                <form>
+                    <div class="ui-field-contain">
+                            <select name="select-native-18" id="watched-list-sorter">
+                                <option value="alphabetically">Alphabetically</option>
+                                <option value="rating">By Movie Rating</option>
+                                <option value="release-date">By Release Date</option>
+                            </select>
+                    </div>
+                </form>
 
                 <div>
                     <ul style="margin-top: 10px;" data-role="listview" id="watched-movies-list">
                     </ul>
                 </div>
             </div>
-
-
 
             <div data-position="fixed" data-role="footer">
                 <div data-role="navbar">

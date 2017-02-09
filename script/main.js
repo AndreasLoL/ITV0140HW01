@@ -60,9 +60,8 @@ $(document).on("pagebeforeshow","#pageone",function(){
             }
         });
     }
+
 });
-
-
 
 function loadMovieView(id) {
     $.mobile.navigate("movieview.html?id="+ id, { transition: "slide", changeHash: true });
@@ -110,6 +109,13 @@ function fillTopList() {
 }
 
 $(document).on("pagebeforeshow","#search-page",function(){
+
+    $('#search-basic').keyup(function(event) {
+        if (event.which === 13) {
+            $(this).blur();
+        }
+    });
+
     if ($('#search-result-list').find('li').size() == 0) {
         if (movies.length == 0) {
             $.ajax({
@@ -151,4 +157,124 @@ function updateSearchResults() {
     }
 
     fillResultList(newMovies);
+}
+
+$(document).on("pagebeforeshow","#watch-list-page",function(){
+    $('#watch-list-list').empty();
+    var watchList = JSON.parse(localStorage.getItem("watch-list"));
+    $.each(watchList, function(i, movie){
+        var id = movie["uniqueID"];
+        $('#watch-list-list').append('<li><a onclick="loadMovieView(' + id + ')" href="#"><img src="' + movie["logoURL"] +'"><h2>' + movie["title"] + '</h2><p>' + movie["description"] + '</p><p class="ui-li-aside" style="line-height: 110px" "><strong>' + movie["rating"] + '</strong></p></a></li>').listview('refresh')
+    });
+});
+
+$(document).on("pagebeforeshow","#watched-movies-page",function(){
+    $('#watched-movies-list').empty();
+    var watchedList = sortAlphabetically(JSON.parse(localStorage.getItem("watched-movies-list")));
+    $.each(watchedList, function(i, movie){
+        var id = movie["uniqueID"];
+        $('#watched-movies-list').append('<li><a onclick="loadMovieView(' + id + ')" href="#"><img src="' + movie["logoURL"] +'"><h2>' + movie["title"] + '</h2><p>' + movie["description"] + '</p><p class="ui-li-aside" style="line-height: 110px" "><strong>' + movie["rating"] + '</strong></p></a></li>').listview('refresh')
+    });
+});
+
+function sortByDate(watchedList) {
+    watchedList.sort(function (a, b) {
+        var date1 = new Date(convertStringToCorrectDateFormat(a["releaseDate"]));
+        var date2 = new Date(convertStringToCorrectDateFormat(b["releaseDate"]));
+        console.log(date1.toDateString());
+        if (date1 > date2) {
+            return 1;
+        } else {
+            return -1;
+        }
+    });
+
+    return watchedList;
+}
+
+function sortByRating(watchedList) {
+    watchedList.sort(function (a, b) {
+        if (a["rating"] == "Coming Soon") {
+            return 1;
+        } else if (b["rating"] == "Coming Soon") {
+            return -1;
+        } else {
+            var rating1 = parseFloat(a["rating"].split("/")[0]);
+            var rating2 = parseFloat(b["rating"].split("/")[0]);
+            if (rating1 < rating2) {
+                return 1;
+            } else {
+                return -1;
+            }
+        }
+    });
+
+    return watchedList;
+}
+
+function sortAlphabetically(watchedList) {
+    watchedList.sort(function (a, b) {
+        if (a["title"] <  b["title"]) {
+            return -1;
+        } return 1;
+    });
+
+    return watchedList;
+}
+
+
+function getWatchedMoviesList() {
+    if (localStorage.getItem("watched-movies-list") == null || localStorage.getItem("watched-movies-list").length == 0) {
+        localStorage.setItem("watched-movies-list", "[]");
+    }
+    return JSON.parse(localStorage.getItem("watched-movies-list"));
+}
+
+function getWatchList() {
+    if (localStorage.getItem("watch-list") == null || localStorage.getItem("watch-list").length == 0) {
+        localStorage.setItem("watch-list", "[]");
+    }
+    return JSON.parse(localStorage.getItem("watch-list"));
+}
+
+$('#watched-list-sorter').change(function () {
+    var sort = $(this).val();
+    var watchedList = getWatchedMoviesList();
+    var sortedWatchlist;
+    if (sort == "release-date") {
+        sortedWatchlist = sortByDate(watchedList);
+    } else if (sort == "rating") {
+        sortedWatchlist = sortByRating(watchedList);
+    } else if (sort == "alphabetically") {
+        sortedWatchlist = sortAlphabetically(watchedList);
+    }
+
+    $("#watched-movies-list").empty();
+    $.each(sortedWatchlist, function (i, movie) {
+        var id = movie["uniqueID"];
+        $('#watched-movies-list').append('<li><a onclick="loadMovieView(' + id + ')" href="#"><img src="' + movie["logoURL"] + '"><h2>' + movie["title"] + '</h2><p>' + movie["description"] + '</p><p class="ui-li-aside" style="line-height: 110px" "><strong>' + movie["rating"] + '</strong></p></a></li>').listview('refresh')
+    });
+});
+
+$('#watch-list-sorter').change(function () {
+    var sort = $(this).val();
+    var watchedList = getWatchList();
+    var sortedWatchlist;
+    if (sort == "release-date") {
+        sortedWatchlist = sortByDate(watchedList);
+    } else if (sort == "rating") {
+        sortedWatchlist = sortByRating(watchedList);
+    } else if (sort == "alphabetically") {
+        sortedWatchlist = sortAlphabetically(watchedList);
+    }
+    $("#watch-list-list").empty();
+    $.each(sortedWatchlist, function (i, movie) {
+        var id = movie["uniqueID"];
+        $('#watch-list-list').append('<li><a onclick="loadMovieView(' + id + ')" href="#"><img src="' + movie["logoURL"] + '"><h2>' + movie["title"] + '</h2><p>' + movie["description"] + '</p><p class="ui-li-aside" style="line-height: 110px" "><strong>' + movie["rating"] + '</strong></p></a></li>').listview('refresh')
+    });
+});
+
+function convertStringToCorrectDateFormat(dateAsString) {
+    var parts = dateAsString.split(".");
+    return new Date(parts[2], parts[1], parts[0])
 }
