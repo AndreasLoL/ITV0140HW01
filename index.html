@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <div data-role="page" id="search-page">
+        <div data-role="page" id="search-page2">
             <div data-position="fixed" data-role="header">
                 <a href="#pageone" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
                 <h1>Search</h1>
@@ -102,6 +102,33 @@
 
                 <div>
                     <ul style="margin-top: 10px;" data-role="listview" id="search-result-list">
+                    </ul>
+                </div>
+            </div>
+
+            <div data-position="fixed" data-role="footer">
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="#trending-page" data-icon="bullets">Trending</a></li>
+                        <li><a href="#watch-list-page" data-icon="star">Watch List</a></li>
+                        <li><a href="#watched-movies-page" data-icon="check">Watched Movies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="page" id="search-page">
+            <div data-position="fixed" data-role="header">
+                <a href="#pageone" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+                <h1>Search</h1>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <label for="search-basic">Search movies:</label>
+                <input type="search" name="search" id="search-basic2" value="" />
+
+                <div>
+                    <ul style="margin-top: 10px;" data-role="listview" id="search-result-list2">
                     </ul>
                 </div>
             </div>

@@ -108,7 +108,7 @@ function fillTopList() {
     showTopList();
 }
 
-$(document).on("pagebeforeshow","#search-page",function(){
+$(document).on("pagebeforeshow","#search-page2",function(){
 
     $('#search-basic').keyup(function(event) {
         if (event.which === 13) {
@@ -136,6 +136,40 @@ $(document).on("pagebeforeshow","#search-page",function(){
             fillResultList(movies)
         }
     }
+});
+
+
+$(document).on("pagebeforeshow","#search-page",function(){
+    $('#search-basic2').keyup(function(event) {
+        if (event.which === 13) {
+            $(this).blur();
+            var searchURL = "http://api.themoviedb.org/3/search/movie?api_key=16e23eaf0dd6d6eaef45c66aad2bc97c&query=" + encodeURIComponent($("#search-basic2").val());
+            $("#search-result-list2").empty();
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: searchURL,
+                success: function(data){
+                    var allResults = data["results"];
+                    $.each(allResults, function(i, movie){
+                        var id = movie["id"];
+                        var title = movie["original_title"];
+                        var rating = movie["vote_average"] + "/10";
+                        var description = movie["overview"];
+                        var logoURL = "http://image.tmdb.org/t/p/w185" + movie["poster_path"];
+                        $('#search-result-list2').append('<li><a onclick="loadMovieView(' + id + ')" href="#" data-parm="ayy"><img src="' + logoURL +'"><h2>' + title + " " + rating + '</h2><p>' + description + '</p></a></li>').listview('refresh')
+                    });
+                    trendingMoviesLoaded = true;
+                    notifyDataLoaded();
+                },
+                error : function(jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                    console.log(textStatus);
+                    console.log(jqXHR);
+                }
+            });
+        }
+    });
 });
 
 function fillResultList(foundMovies) {
