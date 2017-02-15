@@ -1,0 +1,21 @@
+CACHE MANIFEST
+# v1337.1336 - 11.02.2017
+
+CACHE:
+http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.css
+https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js
+http://code.jquery.com/mobile/1.0rc1/jquery.mobile-1.0rc1.min.js
+http://code.jquery.com/mobile/1.0rc1/images/ajax-loader.png
+http://code.jquery.com/mobile/1.0rc1/images/icons-18-white.png
+http://code.jquery.com/mobile/1.0rc1/images/icons-18-black.png
+http://code.jquery.com/mobile/1.0rc1/images/icons-36-white.png
+http://code.jquery.com/mobile/1.0rc1/images/icons-36-black.png
+/ITV0140HW01/design/style.css
+/ITV0140HW01/script/main.js
+/ITV0140HW01/fonts/OpenSans-regular.ttf
+
+NETWORK:
+*
+
+FALLBACK:
+/ /ITV0140HW01/placeholder.png
